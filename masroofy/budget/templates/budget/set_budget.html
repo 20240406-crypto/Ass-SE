@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Set Budget</title>
+
+    <style>
+    body {
+        font-family: Arial;
+        background-color: #f5f5f5;
+        padding: 30px;
+    }
+
+    .card {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        width: 350px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    input {
+        width: 100%;
+        padding: 8px;
+    }
+
+    button {
+        padding: 10px;
+        width: 100%;
+        background-color: green;
+        color: white;
+        border: none;
+        border-radius: 5px;
+    }
+    </style>
+
+</head>
+<body>
+
+    <h1>Set Your Budget</h1>
+
+    <div class="card">
+
+        {% if error %}
+            <p style="color:red;">{{ error }}</p>
+        {% endif %}
+
+        {% if success %}
+            <p style="color:green;">Budget saved successfully!</p>
+        {% endif %}
+
+        {% if daily_limit %}
+            <p>Daily Limit: {{ daily_limit }}</p>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>Amount:</label>
+            <input type="number" name="amount"><br><br>
+
+            <label>Start Date:</label>
+            <input type="date" name="start_date"><br><br>
+
+            <label>End Date:</label>
+            <input type="date" name="end_date"><br><br>
+
+            <button type="submit">Save</button>
+        </form>
+
+    </div>
+
+</body>
+</html>

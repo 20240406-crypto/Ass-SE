@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+
+    <style>
+    body {
+        font-family: Arial;
+        background-color: #f5f5f5;
+        padding: 30px;
+    }
+
+    .card {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        width: 350px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+        margin-bottom: 20px;
+    }
+    </style>
+
+</head>
+<body>
+
+    <h1>📊 Budget Dashboard</h1>
+
+    <div class="card">
+
+        {% if error %}
+            <p style="color:red;">{{ error }}</p>
+
+        {% else %}
+
+            <h3>💰 Total Budget: {{ budget.amount }}</h3>
+            <h3>📅 Start Date: {{ budget.start_date }}</h3>
+            <h3>📅 End Date: {{ budget.end_date }}</h3>
+
+            <hr>
+
+            <h2>🔥 Daily Limit: {{ daily_limit }}</h2>
+
+        {% endif %}
+
+        <br>
+        <a href="/set-budget/">🔙 Set New Budget</a>
+
+    </div>
+
+</body>
+</html>
