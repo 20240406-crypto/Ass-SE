@@ -1,5 +1,17 @@
 from django.shortcuts import render, redirect
-from .models import BudgetCycle
+from .models import BudgetCycle , User
+
+
+
+
+
+def CreateUser(request):
+    if request.method =="POST" :
+        name = request.POST.get("Name")
+        password = request.POST.get("Password")
+        User.objects.create(Name = name , Password = password ,FakeBackUP = " " )
+        return redirect ("dashboard")
+    return render(request, "budget/UserLogin.html")
 
 
 def setBudget(request):
@@ -36,6 +48,7 @@ def setBudget(request):
 
 
 def dashboard(request):
+    user = User.objects.last()
     budget = BudgetCycle.objects.last()
 
     if not budget:
@@ -44,6 +57,7 @@ def dashboard(request):
         })
 
     return render(request, "budget/dashboard.html", {
+        "user" : user,
         "budget": budget,
         "daily_limit": budget.daily_limit_calc()
     })

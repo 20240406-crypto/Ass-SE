@@ -10,3 +10,12 @@ class BudgetCycle(models.Model):
     def daily_limit_calc(self):
         days = (self.end_date - self.start_date).days + 1
         return self.amount / days
+    
+
+class User(models.Model):
+    Name = models.CharField(max_length=40)
+    Password = models.CharField(max_length=20)
+    FakeBackUP = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.Name
